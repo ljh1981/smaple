@@ -1,0 +1,71 @@
+plugins {
+    id 'base'
+    id 'java'
+    id 'java-library'
+    alias depns.plugins.spring.boot.plugin
+    alias depns.plugins.spring.dependencyManagement.plugin
+}
+
+group = 'com.sample'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+    configureEach {
+        resolutionStrategy.cacheChangingModulesFor 0, "minutes"
+        resolutionStrategy.cacheDynamicVersionsFor 0, "seconds"
+        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-log4j2'
+    implementation depns.bundles.commons.compose
+    implementation depns.mybatis.spring.boot.starter
+    implementation depns.jasypt.spring.boot.starter
+    implementation depns.p6spy.spring.boot.starter
+    implementation depns.springdoc.openapi.starter.webmvc.ui
+
+    compileOnly depns.hibernate.core
+    compileOnly 'org.projectlombok:lombok'
+    compileOnly depns.lombok.mapstruct.binding
+
+    annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor depns.mapstruct.processor
+
+    runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation depns.mybatis.spring.boot.starter.test
+
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+test {
+    useJUnitPlatform()
+    jvmArgs([
+            '--enable-preview',
+            '-Xshare:off',
+            '-Amapstruct.defaultComponentModel=spring'
+    ])
+}

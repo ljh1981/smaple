@@ -1,0 +1,13 @@
+enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
+dependencyResolutionManagement {
+    versionCatalogs {
+        depns {
+            from(
+                    files(
+                            "${rootDir}/depns.versions.toml"
+                    )
+            )
+        }
+    }
+}
+rootProject.name = 'api'

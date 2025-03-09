@@ -1,0 +1,32 @@
+[versions]
+springBoot = "3.4.3"
+springDependencyManagement = "1.1.7"
+commonsLang3 = "3.17.0"
+commonsCollections4 = "4.5.0-M2"
+mapstruct = "1.6.3"
+lombokMapstructBinding = "0.2.0"
+hibernateCore = "6.6.9.Final"
+mybatisSpringBootStarter = "3.0.4"
+jasyptSpringBootStarter = "3.0.5"
+p6spySpringBootStarter = "1.10.0"
+springdocOpenapiStarterWebmvcUi = "2.8.5"
+
+[libraries]
+commons-lang3 = { group = "org.apache.commons", name = "commons-lang3", version.ref = "commonsLang3" }
+commons-collections4 = { group = "org.apache.commons", name = "commons-collections4", version.ref = "commonsCollections4" }
+mapstruct = { group = "org.mapstruct", name = "mapstruct", version.ref = "mapstruct" }
+mapstruct-processor = { group = "org.mapstruct", name = "mapstruct-processor", version.ref = "mapstruct" }
+lombok-mapstruct-binding = { group = "org.projectlombok", name = "lombok-mapstruct-binding", version.ref = "lombokMapstructBinding" }
+hibernate-core = { group = "org.hibernate.orm", name = "hibernate-core", version.ref = "hibernateCore" }
+mybatis-spring-boot-starter = { group = "org.mybatis.spring.boot" , name = "mybatis-spring-boot-starter", version.ref = "mybatisSpringBootStarter" }
+mybatis-spring-boot-starter-test = { group = "org.mybatis.spring.boot" , name = "mybatis-spring-boot-starter-test", version.ref = "mybatisSpringBootStarter" }
+jasypt-spring-boot-starter = { group = "com.github.ulisesbocchio", name = "jasypt-spring-boot-starter", version.ref = "jasyptSpringBootStarter" }
+p6spy-spring-boot-starter = { group = "com.github.gavlyukovskiy", name = "p6spy-spring-boot-starter", version.ref = "p6spySpringBootStarter" }
+springdoc-openapi-starter-webmvc-ui = { group = "org.springdoc", name = "springdoc-openapi-starter-webmvc-ui", version.ref = "springdocOpenapiStarterWebmvcUi" }
+
+[plugins]
+spring-boot-plugin = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependencyManagement-plugin = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
+
+[bundles]
+commons-compose = ['commons-collections4', 'commons-lang3']

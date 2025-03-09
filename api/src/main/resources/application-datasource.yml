@@ -1,0 +1,47 @@
+spring:
+  ora01:
+    datasource:
+      driver-class-name: oracle.jdbc.OracleDriver
+      hikari:
+        pool-name: pool-ora01
+        minimum-idle: 2
+        connection-timeout: 2000
+        validation-timeout: 500
+        maximum-pool-size: 2
+        idle-timeout: 0
+        max-lifetime: 0
+        data-source-properties:
+          oracle:
+            jdbc:
+              defaultConnectionValidation: SOCKET
+  ora02:
+    datasource:
+      driver-class-name: oracle.jdbc.OracleDriver
+      hikari:
+        pool-name: pool-ora02
+        minimum-idle: 2
+        connection-timeout: 2000
+        validation-timeout: 500
+        maximum-pool-size: 2
+        idle-timeout: 0
+        max-lifetime: 0
+        data-source-properties:
+          oracle:
+            jdbc:
+              defaultConnectionValidation: SOCKET
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  ora01:
+    datasource:
+      url: ENC(암호화값)
+      username: ENC(암호화값)
+      password: ENC(암호화값)
+  ora02:
+    datasource:
+      url: ENC(암호화값)
+      username: ENC(암호화값)
+      password: ENC(암호화값)
